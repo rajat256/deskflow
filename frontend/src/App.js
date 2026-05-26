@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './index.css';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://deskflow-api-ten.vercel.app';
 
 const priorityColors = {
   urgent: '#d32f2f',
