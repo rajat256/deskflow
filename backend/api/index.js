@@ -11,6 +11,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Root route
+app.get('/', (req, res) => {
+  res.json({ message: 'DeskFlow API running', endpoints: ['/tickets', '/tickets/stats'] });
+});
+
 // MongoDB URI - use environment variable or fallback to hardcoded value
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://Rajatparkhe:G1M3QP7oMjFZTk1l@ac-omx1fdl-shard-00-00.qivd3id.mongodb.net:27017,ac-omx1fdl-shard-00-01.qivd3id.mongodb.net:27017,ac-omx1fdl-shard-00-02.qivd3id.mongodb.net:27017/deskflow?ssl=true&replicaSet=atlas-s9apru-shard-0&authSource=admin&retryWrites=true&w=majority&appName=deskflow';
 

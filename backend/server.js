@@ -12,6 +12,11 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// Root route
+app.get('/', (req, res) => {
+  res.json({ message: 'DeskFlow API running', endpoints: ['/tickets', '/tickets/stats'] });
+});
+
 const ticketSchema = new mongoose.Schema({
   subject: {
     type: String,
