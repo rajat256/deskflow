@@ -11,6 +11,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// MongoDB URI - use environment variable or fallback to hardcoded value
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://Rajatparkhe:G1M3QP7oMjFZTk1l@ac-omx1fdl-shard-00-00.qivd3id.mongodb.net:27017,ac-omx1fdl-shard-00-01.qivd3id.mongodb.net:27017,ac-omx1fdl-shard-00-02.qivd3id.mongodb.net:27017/deskflow?ssl=true&replicaSet=atlas-s9apru-shard-0&authSource=admin&retryWrites=true&w=majority&appName=deskflow';
+
 const ticketSchema = new mongoose.Schema({
   subject: { type: String, required: true },
   description: { type: String, required: true },
@@ -47,11 +50,9 @@ let mongooseConnection = null;
 
 async function connectDB() {
   if (mongooseConnection) return mongooseConnection;
-  const uri = process.env.MONGODB_URI;
-  if (!uri) throw new Error('MONGODB_URI not set');
   
   try {
-    mongooseConnection = await mongoose.connect(uri, { 
+    mongooseConnection = await mongoose.connect(MONGODB_URI, { 
       serverSelectionTimeoutMS: 5000,
       connectTimeoutMS: 5000
     });
@@ -157,4 +158,5 @@ app.delete('/tickets/:id',
 );
 
 module.exports = app;
+
 

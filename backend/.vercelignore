@@ -1,0 +1,3 @@
+# Don't ignore .env - we need it for deployment
+!.env
+!.env.production
